@@ -1,0 +1,43 @@
+.card-container {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.card {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.card__answerButton {
+    padding: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card__tag-container {
+    display: flex;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.card__tag-container_tag {
+    background-color: lightblue;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.card__bookmarkButton {
+    position: absolute;
+    top: -5px;
+    right: 20px;
+}
+
