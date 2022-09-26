@@ -13,9 +13,18 @@ nav {
     font-weight: bolder;
     font-size: 1.2rem;
     background-color: antiquewhite;
+    border: 0;
     /* border: 1px solid black; */
 }
 
 .nav__button:hover {
     background-color: aliceblue;
+}
+
+.nav__button:active {
+    background-color: rgb(192, 218, 241);
+}
+
+.nav__button__img {
+    width: 50px;
 }
