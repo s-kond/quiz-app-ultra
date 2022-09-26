@@ -1,10 +1,14 @@
 import './App.css';
+import Header from './components/header/Header';
+import Nav from './components/navigation/Navigation';
+import Cards from './components/card/Card';
 
 function App() {
   return (
     <div className="App">
-      <h1>Test Test</h1>
-      <p>Whaaaaat :O</p>
+     <Header/>
+     <Cards/>
+     <Nav/>
     </div>
   );
 }
