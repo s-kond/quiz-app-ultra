@@ -1,16 +1,8 @@
-.card-container {
-    width: 90%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    margin: 0 auto;
-}
-
 .card {
     position: relative;
     width: 100%;
     max-width: 350px;
+    max-height: 20em;
     margin-top: 20px;
     padding: 20px;
     text-align: center;
@@ -23,6 +15,10 @@
     margin: 20px 0;
     font-size: 1.1rem;
     font-weight: bold;
+}
+
+.card__answer {
+    margin-top: 0px;
 }
 
 .bookmark {
