@@ -20,11 +20,7 @@ nav {
     /* border: 1px solid black; */
 }
 
-.nav__button:hover {
-    background-color: aliceblue;
-}
-
-.nav__button:active {
+.nav__button-active {
     background-color: rgb(192, 218, 241);
 }
 
