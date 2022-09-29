@@ -12,9 +12,7 @@ export default function Card({question, answer, tags, bookmarked}) {
             <button type="button" className="card__answerButton" onClick={()=> setShowAnswer(!showAnswer)}>{showAnswer ? "Hide answer" : "Show answer"}</button>
             <p className={showAnswer ? "card__answer" : "card__answer hidden"}>{answer}</p>
             <div className="card__tag-container">
-                {tags.map(tag => {
-                    return <div key={Math.random()} className="card__tag-container_tag">#{tag}</div>
-                })}
+                <div className="card__tag-container_tag">#{tags}</div>
             </div>
             <button type="button" className="card__bookmarkButton"><img className="bookmark" src={bookmarked ? checkedBookmark : bookmark} alt="unchecked bookmark"/></button>
         </article>
