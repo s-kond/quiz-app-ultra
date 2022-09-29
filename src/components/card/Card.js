@@ -3,7 +3,7 @@ import { useState } from "react";
 import bookmark from '../assets/bookmark.svg'
 import checkedBookmark from '../assets/bookmark-clicked.svg'
 
-export default function Card({question, answer, tags, bookmarked}) {
+export default function Card({id, question, answer, tags, bookmarked, onDelete, onToggle}) {
     const [showAnswer, setShowAnswer] = useState(false);
 
     return (
@@ -14,7 +14,8 @@ export default function Card({question, answer, tags, bookmarked}) {
             <div className="card__tag-container">
                 <div className="card__tag-container_tag">#{tags}</div>
             </div>
-            <button type="button" className="card__bookmarkButton"><img className="bookmark" src={bookmarked ? checkedBookmark : bookmark} alt="unchecked bookmark"/></button>
+            <button type="button" onClick={() => onDelete(id)}>Delete card</button>
+            <button type="button" className="card__bookmarkButton" onClick={()=> onToggle(id)} ><img className="bookmark" src={bookmarked ? checkedBookmark : bookmark} alt="unchecked bookmark"/></button>
         </article>
     )
 }

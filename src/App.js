@@ -21,11 +21,23 @@ function App() {
     setCards([...cardArray, {id: nanoid(), question: newQuestion, answer: newAnswer, tags: newTag, bookmarked: false}])
   }
 
+  function deleteCard(cardId){
+    setCards(cardArray.filter(card => card.id !== cardId));
+  }
+
+  function toggleBookmark(cardId){
+    setCards(
+      cardArray.map((card) =>
+        card.id === cardId ? { ...card, bookmarked: !card.bookmarked } : card
+      )
+    );
+  }
+
   return (
     <div className="App">
      <Header/>
-    {activePage === "home" ? <Cards cards={cardArray}/> 
-      : activePage === "bookmark" ? <Cards cards={cardArray} page={activePage}/> 
+    {activePage === "home" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
+      : activePage === "bookmark" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
       : activePage === "add" ? <Create onHandleSubmit={appendCard} setPage={setActivePage}/> 
       : <Profile/>} 
      
