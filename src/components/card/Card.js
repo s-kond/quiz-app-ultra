@@ -14,7 +14,7 @@ export default function Card({id, question, answer, tags, bookmarked, onDelete, 
             <div className="card__tag-container">
                 <div className="card__tag-container_tag">#{tags}</div>
             </div>
-            <button type="button" onClick={() => onDelete(id)}>Delete card</button>
+            <button type="button" className="card__deleteButton" onClick={() => onDelete(id)}>X</button>
             <button type="button" className="card__bookmarkButton" onClick={()=> onToggle(id)} ><img className="bookmark" src={bookmarked ? checkedBookmark : bookmark} alt="unchecked bookmark"/></button>
         </article>
     )
