@@ -4,8 +4,9 @@ import Nav from './components/navigation/Navigation';
 import Cards from './pages/Cards';
 import Create from './pages/Create/Create';
 import Profile from './pages/Profile/Profile';
+import { setLocalStorage, loadLocalStorage } from './lib/localStorage';
 import {nanoid} from "nanoid";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const cards = [
   {id: nanoid(), question: "Are penguins able to fly?", answer: "Unfortunately not", tags: "penguins", bookmarked: true},
@@ -15,7 +16,11 @@ const cards = [
 
 function App() {
   const [activePage, setActivePage] = useState("home");
-  const [cardArray, setCards] = useState(cards);
+  const [cardArray, setCards] = useState(loadLocalStorage("cardArray") ?? cards);
+
+  useEffect(() => {
+    setLocalStorage("cardArray", cardArray);
+  }, [cardArray])
 
   function appendCard(newQuestion, newAnswer, newTag){
     setCards([...cardArray, {id: nanoid(), question: newQuestion, answer: newAnswer, tags: newTag, bookmarked: false}])
