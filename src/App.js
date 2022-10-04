@@ -3,8 +3,8 @@ import Header from './components/header/Header';
 import {NavBar} from './components/navigation/Navigation';
 import {Home} from './pages/Home';
 import {Bookmarks} from './pages/Bookmarks';
-import Create from './pages/Create/Create';
-import Profile from './pages/Profile/Profile';
+import {Create} from './pages/Create';
+import {Profile} from './pages/Profile';
 import {Routes, Route} from "react-router-dom";
 import { setLocalStorage, loadLocalStorage } from './lib/localStorage';
 import {nanoid} from "nanoid";
@@ -44,9 +44,10 @@ function App() {
      <Header/>
       <Routes>
         <Route path='/' element={<Home cards={cardArray} onDelete={deleteCard} onToggle={toggleBookmark} />}/>
-        <Route path='bookmarks' element={<Bookmarks cards={cardArray} onDelete={deleteCard} onToggle={toggleBookmark} />}/>
-        <Route path='create' element={<Create onHandleSubmit={appendCard}/>}/>
-        <Route path='profile' element={<Profile/>}/>
+        <Route path='/bookmarks' element={<Bookmarks cards={cardArray} onDelete={deleteCard} onToggle={toggleBookmark} />}/>
+        <Route path='/create' element={<Create onHandleSubmit={appendCard}/>}/>
+        <Route path='/profile' element={<Profile/>}/>
+        <Route path="/*" element={<h1>Diese Seite existiert leider nicht.</h1>}/>
       </Routes>
      <NavBar/>
     </div>
