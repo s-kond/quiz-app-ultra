@@ -11,9 +11,9 @@ import {nanoid} from "nanoid";
 import { useEffect, useState } from 'react';
 
 const cards = [
-  {id: nanoid(), question: "Are penguins able to fly?", answer: "Unfortunately not", tags: "penguins", bookmarked: true},
-  {id: nanoid(), question: "What do penguins like the most?", answer:"Fish", tags: "penguins", bookmarked: false},
-  {id: nanoid(), question: "Do penguins live north or south of the equator?", answer:"South", tags: "penguins", bookmarked: true}
+  {id: nanoid(), question: "Are penguins able to fly?", answer: "Unfortunately not", tags: ["penguins", "birds"], bookmarked: true},
+  {id: nanoid(), question: "What do penguins like the most?", answer:"Fish", tags: ["penguins", "food"], bookmarked: false},
+  {id: nanoid(), question: "Do penguins live north or south of the equator?", answer:"South", tags: ["penguins"], bookmarked: true}
 ]
 
 function App() {
@@ -23,8 +23,8 @@ function App() {
     setLocalStorage("cardArray", cardArray);
   }, [cardArray])
 
-  function appendCard(newQuestion, newAnswer, newTag){
-    setCards([...cardArray, {id: nanoid(), question: newQuestion, answer: newAnswer, tags: newTag, bookmarked: false}])
+  function appendCard(newQuestion, newAnswer, newTags){
+    setCards([...cardArray, {id: nanoid(), question: newQuestion, answer: newAnswer, tags: newTags, bookmarked: false}])
   }
 
   function deleteCard(cardId){

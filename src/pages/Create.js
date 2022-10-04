@@ -7,9 +7,10 @@ export function Create({onHandleSubmit}){
     function onSubmit(event) {
         event.preventDefault();
         const form = event.target;
-        const { newQuestion, newAnswer, newTag } = form.elements;
-        console.log(newQuestion.value);
-        onHandleSubmit(newQuestion.value, newAnswer.value, newTag.value);
+        const { newQuestion, newAnswer, newTag1, newTag2, newTag3 } = form.elements;
+        let newTags = [newTag1.value, newTag2.value, newTag3.value].filter((tag) => tag.length > 0);
+        console.log(newTags);
+        onHandleSubmit(newQuestion.value, newAnswer.value, newTags);
         navigate("/");
       }
     
@@ -23,8 +24,10 @@ export function Create({onHandleSubmit}){
             <label htmlFor="newAnswer" className="add-card-gap">Your answer:</label>
             <textarea className="add-card__answer" name="newAnswer" id="newAnswer" cols="30" rows="5" placeholder="max. 150 letters" maxLength="150" required></textarea>
         
-            <label htmlFor="newTag" className="add-card-gap">Tags:</label>
-            <input type="text" maxLength="20" id="newTag" name="newTag" placeholder="optional"/>
+            <label htmlFor="newTag1" className="add-card-gap">Tags:</label>
+            <input type="text" maxLength="20" id="newTag1" name="newTag1" placeholder="optional"/>
+            <input type="text" maxLength="20" id="newTag2" name="newTag2" placeholder="optional"/>
+            <input type="text" maxLength="20" id="newTag3" name="newTag3" placeholder="optional"/>
 
             <button type="submit">Create Card</button>
         </CreateForm>
