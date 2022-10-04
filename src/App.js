@@ -4,23 +4,46 @@ import Nav from './components/navigation/Navigation';
 import Cards from './pages/Cards';
 import Create from './pages/Create/Create';
 import Profile from './pages/Profile/Profile';
-import { useState } from 'react';
+import { setLocalStorage, loadLocalStorage } from './lib/localStorage';
+import {nanoid} from "nanoid";
+import { useEffect, useState } from 'react';
 
 const cards = [
-  {id: 101, question: "Are penguins able to fly?", answer: "Unfortunately not", tags: ["penguins", "sea"], bookmarked: true},
-  {id: 102, question: "What do penguins like the most?", answer:"Fish", tags: ["penguins", "yolo", "fish"], bookmarked: false},
-  {id: 102, question: "Do penguins live north or south of the equator?", answer:"South", tags: ["penguins", "equator"], bookmarked: true}
+  {id: nanoid(), question: "Are penguins able to fly?", answer: "Unfortunately not", tags: "penguins", bookmarked: true},
+  {id: nanoid(), question: "What do penguins like the most?", answer:"Fish", tags: "penguins", bookmarked: false},
+  {id: nanoid(), question: "Do penguins live north or south of the equator?", answer:"South", tags: "penguins", bookmarked: true}
 ]
 
 function App() {
   const [activePage, setActivePage] = useState("home");
+  const [cardArray, setCards] = useState(loadLocalStorage("cardArray") ?? cards);
+
+  useEffect(() => {
+    setLocalStorage("cardArray", cardArray);
+  }, [cardArray])
+
+  function appendCard(newQuestion, newAnswer, newTag){
+    setCards([...cardArray, {id: nanoid(), question: newQuestion, answer: newAnswer, tags: newTag, bookmarked: false}])
+  }
+
+  function deleteCard(cardId){
+    setCards(cardArray.filter(card => card.id !== cardId));
+  }
+
+  function toggleBookmark(cardId){
+    setCards(
+      cardArray.map((card) =>
+        card.id === cardId ? { ...card, bookmarked: !card.bookmarked } : card
+      )
+    );
+  }
 
   return (
     <div className="App">
      <Header/>
-    {activePage === "home" ? <Cards cards={cards}/> 
-      : activePage === "bookmark" ? <Cards cards={cards} page={activePage}/> 
-      : activePage === "add" ? <Create/> 
+    {activePage === "home" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
+      : activePage === "bookmark" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
+      : activePage === "add" ? <Create onHandleSubmit={appendCard} setPage={setActivePage}/> 
       : <Profile/>} 
      
      <Nav setPage={setActivePage} page={activePage}/>

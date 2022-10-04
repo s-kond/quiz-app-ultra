@@ -37,6 +37,17 @@
     border-radius: 10px;
 }
 
+.card__deleteButton {
+    background-color: rgb(252, 68, 68);
+    font-size:x-large;
+    font-weight: bolder;
+    color: white;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 10px;
+}
+
 .card__bookmarkButton {
     position: absolute;
     top: -9px;
