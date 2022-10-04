@@ -1,9 +1,11 @@
 import './App.css';
 import Header from './components/header/Header';
-import Nav from './components/navigation/Navigation';
-import Cards from './pages/Cards';
+import {NavBar} from './components/navigation/Navigation';
+import {Home} from './pages/Home';
+import {Bookmarks} from './pages/Bookmarks';
 import Create from './pages/Create/Create';
 import Profile from './pages/Profile/Profile';
+import {Routes, Route} from "react-router-dom";
 import { setLocalStorage, loadLocalStorage } from './lib/localStorage';
 import {nanoid} from "nanoid";
 import { useEffect, useState } from 'react';
@@ -15,7 +17,6 @@ const cards = [
 ]
 
 function App() {
-  const [activePage, setActivePage] = useState("home");
   const [cardArray, setCards] = useState(loadLocalStorage("cardArray") ?? cards);
 
   useEffect(() => {
@@ -41,12 +42,13 @@ function App() {
   return (
     <div className="App">
      <Header/>
-    {activePage === "home" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
-      : activePage === "bookmark" ? <Cards cards={cardArray} page={activePage} onDelete={deleteCard} onToggle={toggleBookmark}/> 
-      : activePage === "add" ? <Create onHandleSubmit={appendCard} setPage={setActivePage}/> 
-      : <Profile/>} 
-     
-     <Nav setPage={setActivePage} page={activePage}/>
+      <Routes>
+        <Route path='/' element={<Home cards={cardArray} onDelete={deleteCard} onToggle={toggleBookmark} />}/>
+        <Route path='bookmarks' element={<Bookmarks cards={cardArray} onDelete={deleteCard} onToggle={toggleBookmark} />}/>
+        <Route path='create' element={<Create onHandleSubmit={appendCard}/>}/>
+        <Route path='profile' element={<Profile/>}/>
+      </Routes>
+     <NavBar/>
     </div>
   );
 }

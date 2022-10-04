@@ -1,7 +1,6 @@
 import Card from "../components/card/Card";
 
-  function Cards({cards, page, onDelete, onToggle}){
-    if (page === "bookmark") {
+export function Bookmarks({cards, onDelete, onToggle}){
         return (
         <div className="card-container">
             {cards.map(card => {
@@ -13,16 +12,4 @@ import Card from "../components/card/Card";
             })}
         </div>
         )
-    } else {
-        return (
-            <div className="card-container">
-                {cards.map(card => {
-                return <Card id={card.id} question={card.question} answer={card.answer} tags={card.tags} bookmarked={card.bookmarked} onDelete={onDelete} onToggle={onToggle}/>
-                })}
-            </div>
-            )
-    }
-
   }
-
-  export default Cards;

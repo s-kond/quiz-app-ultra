@@ -1,13 +1,12 @@
 import "./Create.css"
 
-export default function Create({onHandleSubmit, setPage}){
+export default function Create({onHandleSubmit}){
     function onSubmit(event) {
         event.preventDefault();
         const form = event.target;
         const { newQuestion, newAnswer, newTag } = form.elements;
         console.log(newQuestion.value);
         onHandleSubmit(newQuestion.value, newAnswer.value, newTag.value);
-        setPage("home");
       }
     
     return (
