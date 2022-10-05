@@ -4,7 +4,7 @@ import Card from "../components/card/Card";
         return (
             <div className="card-container">
                 {cards.map(card => {
-                return <Card id={card.id} question={card.question} answer={card.answer} tags={card.tags} bookmarked={card.bookmarked} onDelete={onDelete} onToggle={onToggle}/>
+                return <Card key={card.id} id={card.id} question={card.question} answer={card.answer} tags={card.tags} bookmarked={card.bookmarked} onDelete={onDelete} onToggle={onToggle}/>
                 })}
             </div>
             )

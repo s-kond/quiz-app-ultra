@@ -19,10 +19,10 @@ export function NavBar(){
 
 const Nav = styled.nav`
     display: flex;
-    position: sticky;
+    position: fixed;
     bottom: 0;
-    justify-self: end;
-    align-self: end;
+    /* justify-self: end;
+    align-self: end; */
     justify-content: space-around;
     width: 100%;
     height: 80px;
