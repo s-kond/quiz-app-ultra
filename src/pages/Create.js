@@ -9,7 +9,6 @@ export function Create({onHandleSubmit}){
         const form = event.target;
         const { newQuestion, newAnswer, newTag1, newTag2, newTag3 } = form.elements;
         let newTags = [newTag1.value, newTag2.value, newTag3.value].filter((tag) => tag.length > 0);
-        console.log(newTags);
         onHandleSubmit(newQuestion.value, newAnswer.value, newTags);
         navigate("/");
       }
