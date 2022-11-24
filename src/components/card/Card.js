@@ -1,18 +1,18 @@
 import "./Card.css"
-import { useState } from "react";
 import bookmark from '../assets/bookmark.svg'
 import checkedBookmark from '../assets/bookmark-clicked.svg'
 import { NavLink } from "react-router-dom";
+import useToggle from "../../hooks/useToggle";
 
 export default function Card({id, question, answer, tags, bookmarked, onDelete, onToggle}) {
-    const [showAnswer, setShowAnswer] = useState(false);
+    const [showAnswer, setShowAnswer] = useToggle(false);
 
     return (
         <article className="card">
             <NavLink to={`/details/${id}`}>
             <h2>{question}</h2>
             </NavLink>
-            <button type="button" className="card__answerButton" onClick={()=> setShowAnswer(!showAnswer)}>{showAnswer ? "Hide answer" : "Show answer"}</button>
+            <button type="button" className="card__answerButton" onClick={setShowAnswer}>{showAnswer ? "Hide answer" : "Show answer"}</button>
             <p className={showAnswer ? "card__answer" : "card__answer hidden"}>{answer}</p>
             <div className="card__tag-container"> 
                 {tags.map(tag => <div key={Math.random()} className="card__tag-container_tag">#{tag}</div>)}
